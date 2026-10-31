@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Akshay &amp; Theertha · 04 January 2027</title>
 <meta name="description" content="You are warmly invited to the wedding of Akshay & Theertha on Monday, 04 January 2027.">
-<meta name="theme-color" content="#F8F1E7">
+<meta name="theme-color" content="#FFFFFF">
 <meta property="og:title" content="Akshay & Theertha — Wedding Invitation">
 <meta property="og:description" content="Monday, 04 January 2027 · Muhurtham 11:40 AM – 12:30 PM · Nadakkuthazha">
 <meta property="og:type" content="website">
@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/images/video-poster.jpg">
-<link rel="preload" as="image" href="assets/images/bg-sunlit.webp">
+<link rel="preload" as="image" href="assets/images/bg-breath.webp">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="intro-active">
@@ -29,38 +29,32 @@
 <!-- ============ 2. OPENING ANIMATION ============ -->
 <div id="intro" aria-label="Invitation opening">
   <img id="intro-static" class="intro-media" src="assets/images/opening-end.jpg" alt="Akshay &amp; Theertha, 04 January 2027, Monday" hidden>
-  <video id="intro-video" class="intro-media" playsinline preload="auto" poster="assets/images/video-poster.jpg" aria-hidden="true">
+  <video id="intro-video" class="intro-media" muted playsinline autoplay preload="auto" poster="assets/images/video-poster.jpg" aria-hidden="true">
     <source src="assets/video/opening.mp4" type="video/mp4">
   </video>
-  <div id="gate" class="gate">
-    <p class="gate-eyebrow">You are invited</p>
-    <span class="divider" aria-hidden="true"><i></i><b></b><i></i></span>
-    <p class="gate-names">Akshay <em>&amp;</em> Theertha</p>
-    <p class="gate-date">04 January 2027</p>
-    <button id="open-invitation" type="button">Open Invitation</button>
-  </div>
-  <button id="skip-intro" type="button" hidden>Skip intro</button>
+  <button id="open-invitation" type="button" hidden>Open Invitation</button>
+  <button id="skip-intro" type="button">Skip intro</button>
 </div>
 
 <main id="invitation">
 
 <!-- ============ 3. HERO ============ -->
 <section class="sec hero" id="hero">
-  <div class="bg" style="background-image:url(assets/images/bg-sunlit.webp)"></div>
+  <div class="bg" style="background-image:url(assets/images/bg-breath.webp);background-position:center top"></div>
   <div class="wrap center">
     <p class="eyebrow reveal">Wedding Invitation</p>
-    <span class="divider reveal" aria-hidden="true"><i></i><b></b><i></i></span>
+    <span class="vline reveal" aria-hidden="true"></span>
     <h1 class="names reveal"><span>Akshay</span><em>&amp;</em><span>Theertha</span></h1>
-    <span class="divider reveal" aria-hidden="true"><i></i><b></b><i></i></span>
-    <p class="date-line reveal">04 January 2027</p>
+    <p class="big-day reveal" aria-label="04">04</p>
+    <p class="date-line reveal">January 2027</p>
     <p class="weekday reveal">Monday</p>
+    <span class="vline reveal" aria-hidden="true"></span>
   </div>
-  <div class="scroll-cue" aria-hidden="true"></div>
 </section>
 
 <!-- ============ 4. INVITATION MESSAGE ============ -->
 <section class="sec message" id="message">
-  <div class="bg" style="background-image:url(assets/images/bg-elegant.webp)"></div>
+  <div class="bg" style="background-image:url(assets/images/bg-chiffon.webp);background-position:center top"></div>
   <div class="wrap center narrow">
     <span class="script reveal">With joy</span>
     <span class="divider reveal" aria-hidden="true"><i></i><b></b><i></i></span>
@@ -74,7 +68,7 @@
 
 <!-- ============ 5. COUPLE PHOTOS ============ -->
 <section class="sec collage-sec" id="photos">
-  <div class="paper"></div>
+  <div class="bg" style="background-image:url(assets/images/bg-botanical.webp);background-position:center top"></div>
   <div class="collage">
     <span class="tape tape-a" aria-hidden="true"></span>
     <figure class="photo photo-1">
@@ -93,7 +87,7 @@
 
 <!-- ============ 6. WEDDING DETAILS ============ -->
 <section class="sec details" id="details">
-  <div class="bg" style="background-image:url(assets/images/bg-sunlit.webp)"></div>
+  <div class="bg" style="background-image:url(assets/images/bg-breath.webp);background-position:center 30%"></div>
   <div class="wrap center narrow">
     <p class="eyebrow reveal">The Wedding</p>
     <h2 class="display reveal">Monday, 04 January 2027</h2>
@@ -108,8 +102,16 @@
       <p class="value">Bride’s Residence</p>
       <p class="sub">Theertham House, Nadakkuthazha</p>
     </div>
-    <span class="rule reveal" aria-hidden="true"></span>
 
+
+  </div>
+</section>
+
+<!-- ============ COUNTDOWN BAND ============ -->
+<section class="sec band" id="countdown-sec">
+  <div class="bg" style="background-image:url(assets/images/bg-navy-wide.webp);background-position:left center"></div>
+  <div class="wrap center narrow">
+    <p class="eyebrow reveal">Counting down to the Muhurtham</p>
     <div class="countdown reveal" id="countdown" aria-live="off">
       <div class="cd-grid" id="cd-grid">
         <div><b id="cd-d">00</b><span>Days</span></div>
@@ -125,7 +127,7 @@
 
 <!-- ============ 7. SCHEDULE ============ -->
 <section class="sec schedule" id="schedule">
-  <div class="paper"></div>
+  <div class="bg" style="background-image:url(assets/images/bg-chiffon.webp);background-position:center top"></div>
   <div class="wrap center narrow">
     <p class="eyebrow reveal">Schedule</p>
     <h2 class="display reveal">Order of the Day</h2>
@@ -151,7 +153,7 @@
 
 <!-- ============ 8. VENUE ============ -->
 <section class="sec venue" id="venue">
-  <div class="bg" style="background-image:url(assets/images/bg-elegant.webp)"></div>
+  <div class="bg" style="background-image:url(assets/images/bg-navy-silk.webp);background-position:right bottom"></div>
   <div class="wrap center narrow">
     <p class="eyebrow reveal">Venue &amp; Location</p>
     <h2 class="display reveal">Find Us</h2>
@@ -172,7 +174,7 @@
 
 <!-- ============ 9. CLOSING ============ -->
 <section class="sec closing" id="closing">
-  <div class="bg" style="background-image:url(assets/images/bg-sunlit.webp)"></div>
+  <div class="bg" style="background-image:url(assets/images/bg-midnight.webp);background-position:center top"></div>
   <div class="wrap center narrow">
     <span class="script big reveal">With Love &amp; Blessings</span>
     <span class="divider reveal" aria-hidden="true"><i></i><b></b><i></i></span>

@@ -66,31 +66,44 @@
     if (hasGsap && !reduce) gsap.to(intro, { opacity: 0, duration: 1.1, ease: "power2.inOut", onComplete: done });
     else done();
   }
-  function showStill(ms) {
-    video.removeAttribute("src"); video.hidden = true;
-    still.hidden = false;
-    setTimeout(endIntro, ms);
+  var openBtn = document.getElementById("open-invitation");
+  var btnShown = false;
+
+  // The opening holds on its last frame and shows "Open Invitation".
+  function showOpenButton() {
+    if (btnShown || finished) return; btnShown = true;
+    skip.hidden = true;
+    openBtn.hidden = false;
+    if (hasGsap && !reduce) gsap.fromTo(openBtn, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1, ease: "power2.out" });
+  }
+  function showStill() {                      // static last frame (no autoplay / reduced motion / error)
+    try { video.pause(); } catch (e) {}
+    video.hidden = true; still.hidden = false;
+    showOpenButton();
   }
 
-  var gate = document.getElementById("gate");
-  var openBtn = document.getElementById("open-invitation");
-
-  skip.addEventListener("click", endIntro);
-  video.addEventListener("ended", function () { setTimeout(endIntro, 500); });
-  video.addEventListener("error", function () { showStill(2600); });
-
-  // Guests tap "Open Invitation": a user gesture, so the video may play with its sound.
-  openBtn.addEventListener("click", function () {
-    skip.hidden = false;
-    var hideGate = function () { gate.hidden = true; };
-    if (hasGsap && !reduce) gsap.to(gate, { opacity: 0, duration: .6, onComplete: hideGate }); else hideGate();
-    startMusic();                                // tap is a user gesture, so audio is allowed
-    if (reduce) { endIntro(); return; }          // reduced motion: go straight to the invitation
-    video.muted = true;                          // the song plays instead of the video's own sound
-    var p = video.play();
-    if (p && p.catch) p.catch(function () { showStill(2800); });
-    setTimeout(function () { if (!finished && video.currentTime === 0 && !video.hidden) showStill(2000); }, 5000);
+  skip.addEventListener("click", function () {  // jump to the last frame; the guest still taps Open Invitation
+    try { video.pause(); if (video.duration) video.currentTime = video.duration - 0.05; } catch (e) {}
+    showOpenButton();
   });
+  video.addEventListener("ended", showOpenButton);
+  video.addEventListener("timeupdate", function () { if (video.duration && video.currentTime > video.duration - 1.3) showOpenButton(); });
+  video.addEventListener("error", showStill);
+
+  // Tap = user gesture, so the song is allowed to start.
+  openBtn.addEventListener("click", function () {
+    startMusic();
+    endIntro();
+  });
+
+  if (reduce) {
+    showStill();
+  } else {
+    video.muted = true;
+    var p = video.play();
+    if (p && p.catch) p.catch(showStill);
+    setTimeout(function () { if (!btnShown && video.currentTime === 0) showStill(); }, 5000);
+  }
 
   /* ---------- Scroll animations ---------- */
   var scrollReady = false;
