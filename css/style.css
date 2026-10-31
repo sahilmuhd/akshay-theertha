@@ -148,3 +148,11 @@ a{color:inherit}
 .gate[hidden]{display:none}
 
 .tl-note{font:italic 300 19px/1.5 var(--serif);color:#6b5547;margin-top:48px}
+
+/* ---------- Music toggle ---------- */
+#music-toggle{position:fixed;z-index:200;left:max(16px,env(safe-area-inset-left));bottom:max(20px,env(safe-area-inset-bottom));width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(248,241,231,.72);border:1px solid rgba(73,55,45,.28);color:var(--brown);cursor:pointer;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);-webkit-tap-highlight-color:transparent;transition:background .3s}
+#music-toggle[hidden]{display:none}
+#music-toggle:hover,#music-toggle:focus-visible{background:var(--ivory)}
+#music-toggle .slash{display:none}
+#music-toggle.off .waves{display:none}
+#music-toggle.off .slash{display:block}

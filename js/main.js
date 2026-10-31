@@ -19,6 +19,40 @@
     else { a.removeAttribute("href"); a.removeAttribute("target"); a.classList.add("pending"); a.setAttribute("aria-disabled", "true"); a.textContent = "Location link coming soon"; }
   });
 
+  /* ---------- Background music ---------- */
+  var bgm = document.getElementById("bgm");
+  var musicBtn = document.getElementById("music-toggle");
+  var musicOn = false, fadeTimer = null, TARGET_VOL = 0.55;
+  function setMusicUI(on) {
+    musicBtn.classList.toggle("off", !on);
+    musicBtn.setAttribute("aria-pressed", on ? "true" : "false");
+    musicBtn.setAttribute("aria-label", on ? "Mute music" : "Play music");
+  }
+  function fadeTo(v, ms, done) {
+    clearInterval(fadeTimer);
+    var from = bgm.volume, steps = Math.max(1, Math.round(ms / 50)), i = 0;
+    fadeTimer = setInterval(function () {
+      i++; bgm.volume = Math.min(1, Math.max(0, from + (v - from) * i / steps));
+      if (i >= steps) { clearInterval(fadeTimer); if (done) done(); }
+    }, 50);
+  }
+  function startMusic() {
+    musicBtn.hidden = false;
+    bgm.volume = 0;
+    var p = bgm.play();
+    var ok = function () { musicOn = true; setMusicUI(true); fadeTo(TARGET_VOL, 2500); };
+    if (p && p.then) p.then(ok).catch(function () { musicOn = false; setMusicUI(false); });
+    else ok();
+  }
+  musicBtn.addEventListener("click", function () {
+    if (musicOn) { musicOn = false; setMusicUI(false); fadeTo(0, 400, function () { bgm.pause(); }); }
+    else { musicOn = true; setMusicUI(true); bgm.volume = 0; bgm.play().catch(function () {}); fadeTo(TARGET_VOL, 800); }
+  });
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) { if (musicOn) bgm.pause(); }
+    else if (musicOn) { bgm.play().catch(function () {}); }
+  });
+
   /* ---------- Intro ---------- */
   function endIntro() {
     if (finished) return; finished = true;
@@ -50,13 +84,11 @@
     skip.hidden = false;
     var hideGate = function () { gate.hidden = true; };
     if (hasGsap && !reduce) gsap.to(gate, { opacity: 0, duration: .6, onComplete: hideGate }); else hideGate();
+    startMusic();                                // tap is a user gesture, so audio is allowed
     if (reduce) { endIntro(); return; }          // reduced motion: go straight to the invitation
-    video.muted = false;
+    video.muted = true;                          // the song plays instead of the video's own sound
     var p = video.play();
-    if (p && p.catch) p.catch(function () {
-      video.muted = true;                         // sound blocked -> try silent
-      video.play().catch(function () { showStill(2800); });
-    });
+    if (p && p.catch) p.catch(function () { showStill(2800); });
     setTimeout(function () { if (!finished && video.currentTime === 0 && !video.hidden) showStill(2000); }, 5000);
   });
 
