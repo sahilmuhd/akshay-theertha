@@ -131,7 +131,6 @@
     var tl = gsap.timeline({ scrollTrigger: { trigger: ".collage", start: "top 75%", once: true } });
     tl.from(".photo-1", { opacity: 0, y: 45, scale: .96, duration: 1.2, ease: "power2.out" })
       .from(".photo-2", { opacity: 0, y: 45, scale: .96, duration: 1.2, ease: "power2.out" }, 0.3)
-      .from(".tape", { opacity: 0, duration: 1, stagger: .2, ease: "power1.out" }, 0.6)
       .from(".fade-txt", { opacity: 0, y: 10, duration: 1, stagger: .25, ease: "power1.out" }, 0.8);
 
     // subtle background parallax

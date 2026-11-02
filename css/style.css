@@ -21,7 +21,7 @@ a{color:inherit}
 /* phones: the 9:16 artwork fills the screen; wider screens keep full ratio on ivory */
 @media (max-aspect-ratio:10/16){.intro-media{object-fit:cover}}
 @media (min-aspect-ratio:10/16){
-  .intro-media{width:auto;max-width:100%;height:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .intro-media{width:auto;max-width:100%;height:100%}
 }
 #skip-intro{position:absolute;right:max(18px,env(safe-area-inset-right));bottom:max(22px,env(safe-area-inset-bottom));z-index:2;background:rgba(255,255,255,.55);border:1px solid rgba(23,32,68,.25);color:var(--brown);font:400 10px/1 var(--sans);letter-spacing:.28em;text-transform:uppercase;padding:13px 18px;min-height:44px;border-radius:999px;cursor:pointer;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:.8;transition:opacity .3s}
 #skip-intro:hover,#skip-intro:focus-visible{opacity:1}
@@ -197,3 +197,20 @@ body{background:#fff}
 #open-invitation[hidden]{display:none}
 #open-invitation{min-height:52px;padding:0 40px;border:1px solid var(--ink);font:400 11px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;cursor:pointer;transition:background .35s,color .35s;-webkit-tap-highlight-color:transparent;border-radius:0}
 @media(prefers-reduced-motion:reduce){#open-invitation{transition:none}}
+
+
+/* =====================  PURE WHITE · NO LEAVES · NO SHADOWS  ===================== */
+.hero,.message,.collage-sec,.details,.schedule,.venue{background:#fff}
+.photo{box-shadow:none;border:1px solid #E6E6E6}
+.tape,.sprig{display:none}
+.venue-card{background:#fff;box-shadow:none}
+#intro{background:#fff}
+
+/* opening artwork: wash the grey leaf-shadows to pure white, then mask out the two corner sprigs */
+.intro-media{
+  filter:brightness(.86) contrast(3);
+  -webkit-mask-image:radial-gradient(ellipse 90% 34% at 0 0,#000 80%,transparent 100%),radial-gradient(ellipse 85% 30% at 100% 100%,#000 80%,transparent 100%),linear-gradient(#000,#000);
+  mask-image:radial-gradient(ellipse 90% 34% at 0 0,#000 80%,transparent 100%),radial-gradient(ellipse 85% 30% at 100% 100%,#000 80%,transparent 100%),linear-gradient(#000,#000);
+  -webkit-mask-composite:xor,xor,source-over;
+  mask-composite:exclude,exclude,add;
+}
