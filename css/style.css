@@ -206,11 +206,4 @@ body{background:#fff}
 .venue-card{background:#fff;box-shadow:none}
 #intro{background:#fff}
 
-/* opening artwork: wash the grey leaf-shadows to pure white, then mask out the two corner sprigs */
-.intro-media{
-  filter:brightness(.86) contrast(3);
-  -webkit-mask-image:radial-gradient(ellipse 90% 34% at 0 0,#000 80%,transparent 100%),radial-gradient(ellipse 85% 30% at 100% 100%,#000 80%,transparent 100%),linear-gradient(#000,#000);
-  mask-image:radial-gradient(ellipse 90% 34% at 0 0,#000 80%,transparent 100%),radial-gradient(ellipse 85% 30% at 100% 100%,#000 80%,transparent 100%),linear-gradient(#000,#000);
-  -webkit-mask-composite:xor,xor,source-over;
-  mask-composite:exclude,exclude,add;
-}
+
