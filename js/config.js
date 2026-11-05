@@ -9,7 +9,7 @@ window.INVITE_CONFIG = {
 
   // Paste Google Maps links here when confirmed. Empty = button shows "Location link coming soon".
   mapUrls: {
-    wedding:   "",   // Theertham House, Nadakkuthazha
-    groom: ""        // Kasthuri Kuniyil (Snehalayam), Orkkatteri (groom's home)
+    wedding:   "https://maps.app.goo.gl/oH4HoRG7wTeaQCTD8",   // Theertham House, Nadakkuthazha
+    groom: "https://share.google/684JLscjSXldvmetr"        // Kasthuri Kuniyil (Snehalayam), Orkkatteri (groom's home)
   }
 };

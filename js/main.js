@@ -5,12 +5,6 @@
   var hasGsap = typeof window.gsap !== "undefined";
   if (hasGsap && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
 
-  var body = document.body;
-  var intro = document.getElementById("intro");
-  var video = document.getElementById("intro-video");
-  var still = document.getElementById("intro-static");
-  var skip = document.getElementById("skip-intro");
-  var finished = false;
 
   /* ---------- Configurable map links ---------- */
   document.querySelectorAll("[data-map]").forEach(function (a) {
@@ -53,57 +47,16 @@
     else if (musicOn) { bgm.play().catch(function () {}); }
   });
 
-  /* ---------- Intro ---------- */
-  function endIntro() {
-    if (finished) return; finished = true;
-    try { video.pause(); } catch (e) {}
-    var done = function () {
-      intro.remove();
-      body.classList.remove("intro-active");
-      window.scrollTo(0, 0);
-      initScroll();
-    };
-    if (hasGsap && !reduce) gsap.to(intro, { opacity: 0, duration: 1.1, ease: "power2.inOut", onComplete: done });
-    else done();
-  }
+  /* ---------- Open Invitation: tap = user gesture, so the song is allowed to start ---------- */
   var openBtn = document.getElementById("open-invitation");
-  var btnShown = false;
-
-  // The opening holds on its last frame and shows "Open Invitation".
-  function showOpenButton() {
-    if (btnShown || finished) return; btnShown = true;
-    skip.hidden = true;
-    openBtn.hidden = false;
-    if (hasGsap && !reduce) gsap.fromTo(openBtn, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 1, ease: "power2.out" });
-  }
-  function showStill() {                      // static last frame (no autoplay / reduced motion / error)
-    try { video.pause(); } catch (e) {}
-    video.hidden = true; still.hidden = false;
-    showOpenButton();
-  }
-
-  skip.addEventListener("click", function () {  // jump to the last frame; the guest still taps Open Invitation
-    try { video.pause(); if (video.duration) video.currentTime = video.duration - 0.05; } catch (e) {}
-    showOpenButton();
-  });
-  video.addEventListener("ended", showOpenButton);
-  video.addEventListener("timeupdate", function () { if (video.duration && video.currentTime > video.duration - 1.3) showOpenButton(); });
-  video.addEventListener("error", showStill);
-
-  // Tap = user gesture, so the song is allowed to start.
   openBtn.addEventListener("click", function () {
     startMusic();
-    endIntro();
+    document.body.classList.remove("intro-active");
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+    var next = document.getElementById("page-1");
+    if (next) next.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    openBtn.blur();
   });
-
-  if (reduce) {
-    showStill();
-  } else {
-    video.muted = true;
-    var p = video.play();
-    if (p && p.catch) p.catch(showStill);
-    setTimeout(function () { if (!btnShown && video.currentTime === 0) showStill(); }, 5000);
-  }
 
   /* ---------- Scroll animations ---------- */
   var scrollReady = false;
@@ -111,27 +64,27 @@
     if (scrollReady) return; scrollReady = true;
     if (!hasGsap || !window.ScrollTrigger || reduce) return;
 
-    // hero: gentle entrance continuing from the intro
+    // hero: gentle entrance on load
     gsap.from("#hero .reveal", { opacity: 0, y: 18, duration: 1.1, stagger: .14, ease: "power2.out" });
 
+    // photo pages: photo fades in as the page arrives, text follows
+    gsap.utils.toArray(".page").forEach(function (pg) {
+      var t = gsap.timeline({ scrollTrigger: { trigger: pg, start: "top 70%", once: true } });
+      t.from(pg.querySelector(".pg-img"), { opacity: 0, scale: 1.04, duration: 1.4, ease: "power2.out" })
+       .from(pg.querySelectorAll(".reveal"), { opacity: 0, y: 18, duration: 1.1, stagger: .14, ease: "power2.out" }, 0.3);
+    });
+
     // generic section fade-ins
-    gsap.utils.toArray(".sec:not(.hero) .reveal").forEach(function (el) {
+    gsap.utils.toArray(".sec:not(.hero):not(.page) .reveal").forEach(function (el) {
       gsap.from(el, { opacity: 0, y: 22, duration: 1, ease: "power2.out",
         scrollTrigger: { trigger: el, start: "top 88%", once: true } });
     });
 
-    // event circles + text (Wedding Party Departs / Wedding Ceremony)
+    // schedule items
     gsap.utils.toArray(".timeline li").forEach(function (li) {
-      var t = gsap.timeline({ scrollTrigger: { trigger: li, start: "top 85%", once: true } });
-      t.from(li.querySelector(".event-circle"), { opacity: 0, scale: .85, duration: 1, ease: "power2.out" })
-       .from(li.querySelectorAll(".tl-date, h3, .tl-time, .tl-place"), { opacity: 0, y: 22, duration: 1, stagger: .12, ease: "power2.out" }, 0.15);
+      gsap.from(li.children, { opacity: 0, y: 22, duration: 1, stagger: .12, ease: "power2.out",
+        scrollTrigger: { trigger: li, start: "top 85%", once: true } });
     });
-
-    // photo collage
-    var tl = gsap.timeline({ scrollTrigger: { trigger: ".collage", start: "top 75%", once: true } });
-    tl.from(".photo-1", { opacity: 0, y: 45, scale: .96, duration: 1.2, ease: "power2.out" })
-      .from(".photo-2", { opacity: 0, y: 45, scale: .96, duration: 1.2, ease: "power2.out" }, 0.3)
-      .from(".fade-txt", { opacity: 0, y: 10, duration: 1, stagger: .25, ease: "power1.out" }, 0.8);
 
     // subtle background parallax
     gsap.utils.toArray(".bg").forEach(function (bg) {
@@ -139,6 +92,8 @@
         scrollTrigger: { trigger: bg.parentElement, start: "top bottom", end: "bottom top", scrub: true } });
     });
   }
+
+  initScroll();
 
   /* ---------- Countdown (IST) ---------- */
   var start = new Date(CFG.weddingStart).getTime();

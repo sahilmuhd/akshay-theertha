@@ -20,20 +20,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/images/video-poster.jpg">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="intro-active">
-
-<!-- ============ 2. OPENING ANIMATION ============ -->
-<div id="intro" aria-label="Invitation opening">
-  <img id="intro-static" class="intro-media" src="assets/images/opening-end.jpg" alt="Akshay &amp; Theertha, 04 January 2027, Monday" hidden>
-  <video id="intro-video" class="intro-media" muted playsinline autoplay preload="auto" poster="assets/images/video-poster.jpg" aria-hidden="true">
-    <source src="assets/video/opening.mp4" type="video/mp4">
-  </video>
-  <button id="open-invitation" type="button" hidden>Open Invitation</button>
-  <button id="skip-intro" type="button">Skip intro</button>
-</div>
 
 <main id="invitation">
 
@@ -46,35 +35,30 @@
     <p class="big-day reveal" aria-label="04">04</p>
     <p class="date-line reveal">January 2027</p>
     <p class="weekday reveal">Monday</p>
-    <span class="vline reveal" aria-hidden="true"></span>
+  </div>
+  <button id="open-invitation" class="reveal" type="button">Open Invitation</button>
+</section>
+
+<section class="sec page page-1" id="page-1">
+  <div class="frame">
+    <img class="pg-img" src="assets/images/3rd_page.jpeg" width="1080" height="1920" alt="Akshay and Theertha dancing close together on the beach" loading="lazy" decoding="async">
+    <h2 class="p3-title reveal">Two<br><span>Hearts</span></h2>
+    <p class="p3-cap reveal">A<br>Beautiful<br>Journey<br>Begins</p>
   </div>
 </section>
 
-<!-- ============ 4. INVITATION MESSAGE ============ -->
-<section class="sec message" id="message">
-  <div class="wrap center narrow">
-    <span class="script reveal">With joy</span>
-    <span class="divider reveal" aria-hidden="true"><i></i><b></b><i></i></span>
-    <p class="lead reveal">Together with our families, we joyfully invite you to celebrate the beginning of our forever.</p>
-    <p class="lead reveal">As we unite our hearts in love and commitment, your presence and blessings would make our special day even more memorable.</p>
-    <span class="divider reveal" aria-hidden="true"><i></i><b></b><i></i></span>
-    <p class="sign reveal">Akshay &amp; Theertha</p>
-    <p class="small-caps reveal">4th January 2027</p>
-  </div>
-</section>
-
-<!-- ============ 5. COUPLE PHOTOS ============ -->
-<section class="sec collage-sec" id="photos">
-  <div class="collage">
-    <figure class="photo photo-1">
-      <img src="assets/images/couple-sea.jpeg" width="960" height="1280" alt="Akshay and Theertha standing together in the sea at sunset" loading="lazy" decoding="async">
-    </figure>
-    <figure class="photo photo-2">
-      <img src="assets/images/couple-embrace.jpeg" width="960" height="1280" alt="Akshay and Theertha embracing on the beach" loading="lazy" decoding="async">
-    </figure>
-    <h2 class="two-hearts fade-txt">Two<br><span>Hearts</span></h2>
-    <p class="cap cap-left fade-txt">A<br>Beautiful<br>Journey<br>Begins</p>
-    <p class="cap cap-right fade-txt">Same<br>People<br>Different<br>Adventures<br>Forever</p>
+<section class="sec page page-2" id="page-2">
+  <div class="frame">
+    <img class="pg-img" src="assets/images/2nd_page.jpeg" width="1080" height="1920" alt="Akshay and Theertha holding hands and laughing on the beach" loading="lazy" decoding="async">
+    <div class="p2-text">
+      <span class="script reveal">With joy</span>
+      <span class="divider reveal" aria-hidden="true"><i></i><b></b><i></i></span>
+      <p class="p2-lead reveal">Together with our families, we joyfully invite you to celebrate the beginning of our forever.</p>
+      <p class="p2-lead reveal">As we unite our hearts in love and commitment, your presence and blessings would make our special day even more memorable.</p>
+      <span class="divider reveal" aria-hidden="true"><i></i><b></b><i></i></span>
+      <p class="p2-sign reveal">Akshay &amp; Theertha</p>
+      <p class="p2-date reveal">4th January 2027</p>
+    </div>
   </div>
 </section>
 
@@ -99,20 +83,19 @@
   </div>
 </section>
 
-<!-- ============ COUNTDOWN BAND ============ -->
-<section class="sec band" id="countdown-sec">
-  <div class="bg" style="background-image:url(assets/images/bg-navy-wide.webp);background-position:left center"></div>
-  <div class="wrap center narrow">
-    <p class="eyebrow reveal">Counting down to the Muhurtham</p>
-    <div class="countdown reveal" id="countdown" aria-live="off">
-      <div class="cd-grid" id="cd-grid">
-        <div><b id="cd-d">00</b><span>Days</span></div>
-        <div><b id="cd-h">00</b><span>Hours</span></div>
-        <div><b id="cd-m">00</b><span>Minutes</span></div>
-        <div><b id="cd-s">00</b><span>Seconds</span></div>
+<section class="sec page page-cd" id="page-cd">
+  <div class="frame">
+    <img class="pg-img" src="assets/images/hero.jpeg" width="1080" height="1920" alt="Akshay and Theertha embracing on the beach, smiling at each other" loading="lazy" decoding="async">
+    <div class="countdown p1-count" id="countdown" aria-live="off">
+      <p class="p1-eyebrow reveal">Counting down to the Muhurtham</p>
+      <div class="cd-line reveal" id="cd-grid">
+        <span class="cd-n"><b id="cd-d">00</b><u>Days</u></span><i aria-hidden="true">|</i>
+        <span class="cd-n"><b id="cd-h">00</b><u>Hours</u></span><i aria-hidden="true">|</i>
+        <span class="cd-n"><b id="cd-m">00</b><u>Minutes</u></span><i aria-hidden="true">|</i>
+        <span class="cd-n"><b id="cd-s">00</b><u>Seconds</u></span>
       </div>
       <p class="cd-msg" id="cd-msg" hidden></p>
-      <p class="cd-note">until the Muhurtham · IST</p>
+      <p class="p1-until cd-note reveal">Until the Muhurtham</p>
     </div>
   </div>
 </section>
@@ -124,14 +107,12 @@
     <h2 class="display reveal">Order of the Day</h2>
     <ol class="timeline">
       <li id="tl-departure">
-        <img class="event-circle" src="assets/images/reception-centrepiece.png" width="420" height="420" alt="Ivory floral centrepiece with candles" loading="lazy" decoding="async">
         <p class="tl-date">04 January 2027</p>
         <h3>Wedding Party Departs</h3>
         <p class="tl-time">10:30 AM</p>
-        <p class="tl-place">From the groom’s home, Kasthuri Kuniyil (Snehalayam), Orkkatteri</p>
+        <p class="tl-place">From the groom’s home, Kasthoori Kuniyil (Snehalayam), Orkkatteri</p>
       </li>
       <li id="tl-wedding">
-        <img class="event-circle" src="assets/images/ceremony-mandapam.png" width="420" height="420" alt="Traditional Kerala wedding mandapam decorated with ivory flowers" loading="lazy" decoding="async">
         <p class="tl-date">04 January 2027</p>
         <h3>Wedding Ceremony</h3>
         <p class="tl-time">Muhurtham · 11:40 AM – 12:30 PM</p>
@@ -148,15 +129,17 @@
     <p class="eyebrow reveal">Venue &amp; Location</p>
     <h2 class="display reveal">Find Us</h2>
     <div class="venue-card reveal">
-      <p class="label">The Wedding</p>
+      <p class="label">Bride’s House</p>
       <h3>Theertham House</h3>
       <p class="sub">Nadakkuthazha</p>
+      <p class="tl-who">Dr. Theertha (PT)</p>
       <a class="btn" data-map="wedding" href="#" target="_blank" rel="noopener">View Location</a>
     </div>
     <div class="venue-card reveal">
-      <p class="label">Groom’s Home</p>
-      <h3>Kasthuri Kuniyil</h3>
+      <p class="label">Groom’s House</p>
+      <h3>Kasthoori Kuniyil</h3>
       <p class="sub">(Snehalayam), Orkkatteri</p>
+      <p class="tl-who">Akshay S</p>
       <a class="btn" data-map="groom" href="#" target="_blank" rel="noopener">View Location</a>
     </div>
   </div>

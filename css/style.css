@@ -207,3 +207,52 @@ body{background:#fff}
 #intro{background:#fff}
 
 
+
+
+/* =====================  PHOTO PAGES (hero + 2 more)  ===================== */
+.page{padding:0;height:100svh;min-height:600px;background:#fff}
+.page .frame{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,calc(100svh * 9 / 16));aspect-ratio:9/16;container-type:inline-size;color:var(--ink)}
+.page .pg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;max-width:none}
+@media (min-aspect-ratio:9/16){
+  .page .pg-img{-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+}
+/* all text sizes follow the photo width (cqw) so it matches the design at every screen size */
+.page .frame>*:not(.pg-img){position:absolute;z-index:2}
+
+/* page 1: countdown */
+.p1-count{left:0;right:0;top:41.5%;text-align:center;margin:0}
+.p1-eyebrow{font:400 clamp(12px,3.3cqw,20px)/1.4 var(--serif);color:var(--ink)}
+.cd-line{display:flex;align-items:center;justify-content:center;gap:2.6cqw;margin:3.4cqw 0 3.6cqw;font:300 clamp(20px,5.6cqw,34px)/1 var(--serif);color:var(--ink);font-variant-numeric:tabular-nums}
+.cd-line[hidden]{display:none}
+.cd-line b{font-weight:300}
+.cd-line i{font-style:normal;font-weight:400;transform:scaleY(1.15)}
+.cd-n{display:inline-block}
+.cd-n u{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);text-decoration:none}
+.p1-until{font:400 clamp(12px,3.3cqw,20px)/1.4 var(--serif);color:var(--ink);letter-spacing:0;text-transform:none;padding:0;margin:0}
+.p1-count .cd-msg{color:var(--ink);font:italic 300 clamp(18px,4.6cqw,28px)/1.4 var(--serif);padding:0 8cqw;margin:3.4cqw 0}
+.p1-count.done .p1-until{display:none}
+
+/* page 2: invitation message */
+.p2-text{left:0;right:0;top:7.2%;padding:0 6cqw;text-align:center}
+.p2-text .script{font-size:clamp(34px,9.4cqw,64px);line-height:1.1}
+.p2-text .divider{width:34cqw;margin:2.8cqw auto 3.6cqw}
+.p2-text .divider:last-of-type{margin:3.6cqw auto 3cqw}
+.p2-lead{font:300 clamp(14px,3.7cqw,23px)/1.7 var(--serif);color:#222B50;margin:0 auto 2.4cqw}
+.p2-sign{font:400 clamp(24px,5.6cqw,36px)/1.2 var(--serif);color:var(--ink)}
+.p2-date{font:300 clamp(8px,1.9cqw,12px)/1.4 var(--sans);letter-spacing:.38em;text-transform:uppercase;color:#9AA0B4;margin-top:1.4cqw;padding-left:.38em}
+
+/* page 3: Two Hearts */
+.p3-title{left:11%;top:4.3%;font:400 clamp(46px,14.5cqw,92px)/1.03 var(--script);color:var(--ink);text-align:left;margin:0}
+.p3-title span{display:block;margin-left:.34em}
+.p3-cap{left:14.2%;top:30.2%;font:400 clamp(8px,2.45cqw,15px)/1.9 var(--sans);letter-spacing:.34em;text-transform:uppercase;color:#6B7088;margin:0}
+.p3-cap::before{content:"";display:block;width:1px;height:6.6cqw;background:#6B7088;opacity:.7;margin:0 0 4.4cqw}
+
+/* schedule (no images) */
+.timeline li{padding-bottom:64px}
+.tl-who{font:400 clamp(22px,6vw,26px)/1.3 var(--serif);margin-top:12px}
+.timeline .btn{margin-top:20px}
+.venue-card .tl-who{margin-top:10px;color:var(--ink)}
+
+/* hero doubles as the opening screen */
+#hero #open-invitation{bottom:max(7vh,48px)}
+body.intro-active #hero{height:100dvh}
