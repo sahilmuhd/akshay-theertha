@@ -73,6 +73,12 @@ a{color:inherit}
 .closing .wrap{width:100%}
 .quote{font:italic 300 clamp(20px,5vw,24px)/1.6 var(--serif);margin-top:40px;color:#4F566E}
 
+/* ---------- Families ---------- */
+.families{padding-top:clamp(100px,18vh,170px);padding-bottom:clamp(50px,8vh,80px);background:#fff}
+.family-member{margin:32px 0}
+.family-name{font:400 clamp(28px,7.5vw,36px)/1.2 var(--serif);margin:8px 0 6px;color:var(--ink)}
+.family-relation{font:italic 300 clamp(18px,4.6vw,21px)/1.5 var(--serif);color:#4F566E;margin-top:6px}
+
 /* ---------- Collage ---------- */
 .collage-sec{padding:clamp(70px,12vh,120px) 0}
 .collage{position:relative;width:min(92vw,540px);aspect-ratio:1/1.5;margin:0 auto}
